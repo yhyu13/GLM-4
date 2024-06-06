@@ -17,8 +17,9 @@ from transformers import AutoTokenizer, LogitsProcessor
 from sse_starlette.sse import EventSourceResponse
 
 EventSourceResponse.DEFAULT_PING_INTERVAL = 1000
-MODEL_PATH = 'THUDM/glm-4-9b-chat'
-MAX_MODEL_LENGTH = 8192
+model_path = "/media/home/hangyu5/Documents/Hugging-Face/"
+MODEL_PATH = model_path + 'THUDM/glm-4-9b-chat'
+MAX_MODEL_LENGTH = 8192*2
 
 
 @asynccontextmanager
@@ -546,4 +547,4 @@ if __name__ == "__main__":
         max_model_len=MAX_MODEL_LENGTH,
     )
     engine = AsyncLLMEngine.from_engine_args(engine_args)
-    uvicorn.run(app, host='0.0.0.0', port=8000, workers=1)
+    uvicorn.run(app, host='127.0.0.1', port=5051, workers=1)
